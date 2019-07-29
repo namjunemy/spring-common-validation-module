@@ -5,12 +5,12 @@ import io.namjune.commonvalidation.dto.MemberResponseDto;
 import io.namjune.commonvalidation.service.MemberService;
 import java.util.List;
 import javax.validation.Valid;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class MemberController {
 
     private MemberService memberService;

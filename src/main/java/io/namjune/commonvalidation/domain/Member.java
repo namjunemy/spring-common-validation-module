@@ -4,7 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Member {
 
@@ -27,38 +33,12 @@ public class Member {
     @Column(nullable = false)
     private String email;
 
-    public Member() {
-    }
-
+    @Builder
     public Member(String name, String phone1, String phone2, String phone3, String email) {
         this.name = name;
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.phone3 = phone3;
         this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPhone1() {
-        return phone1;
-    }
-
-    public String getPhone2() {
-        return phone2;
-    }
-
-    public String getPhone3() {
-        return phone3;
-    }
-
-    public String getEmail() {
-        return email;
     }
 }
