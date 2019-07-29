@@ -61,9 +61,9 @@
 </script>
 
 <script type="application/javascript">
-    var $tbody = $('#tbody');
+    const $tbody = $('#tbody');
 
-    var findAll = function() {
+    const findAll = function() {
         $.ajax({
             url: '/members',
             method: 'GET',
@@ -77,8 +77,29 @@
         });
     };
 
+    const markingErrorField = function(response) {
+        const errorFields = response.responseJSON.errors;
+
+        if (!errorFields) {
+            alert(response.response.message);
+            return;
+        }
+
+        let $field, error;
+        for (let i = 0, length = errorFields.length; i < length; i++) {
+            error = errorFields[i];
+            $field = $('#' + error['field']);
+
+            if ($field && $field.length > 0) {
+                $field.siblings('.error-message').remove();
+                $field.after('<span class="error-message text-muted taxt-small text-danger">'
+                    + error.defaultMessage + '</span>');
+            }
+        }
+    };
+
     $('#btnSave').click(function() {
-        var member = {
+        let member = {
             name: $('#name').val(),
             phoneNumber: $('#phoneNumber').val(),
             email: $('#email').val(),
@@ -90,6 +111,9 @@
             contentType: 'application/json; charset=utf-8',
             success: function(response) {
                 findAll();
+            },
+            error: function(response) {
+                markingErrorField(response);
             },
         });
     });
