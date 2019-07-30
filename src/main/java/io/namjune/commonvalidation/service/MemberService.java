@@ -3,6 +3,7 @@ package io.namjune.commonvalidation.service;
 
 import io.namjune.commonvalidation.dto.MemberRequestDto;
 import io.namjune.commonvalidation.dto.MemberResponseDto;
+import io.namjune.commonvalidation.exception.ErrorResponse.FieldError;
 import io.namjune.commonvalidation.exception.ValidCustomException;
 import io.namjune.commonvalidation.repository.MemberRepository;
 import java.util.List;
@@ -34,7 +35,8 @@ public class MemberService {
 
     private void verifyDuplicateEmail(String email) {
         if (memberRepository.findByEmail(email).isPresent()) {
-            throw new ValidCustomException("이미 사용중인 이메일입니다.", "email");
+            throw new ValidCustomException(
+                new FieldError(this.getClass().getName(), "email", "이미 사용중인 이메일입니다."));
         }
     }
 }
