@@ -1,9 +1,8 @@
 package io.namjune.commonvalidation.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import io.namjune.commonvalidation.enums.MemberType;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,12 +32,17 @@ public class Member {
     @Column(nullable = false)
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private MemberType memberType;
+
     @Builder
-    public Member(String name, String phone1, String phone2, String phone3, String email) {
+    public Member(String name, String phone1, String phone2, String phone3, String email, MemberType memberType) {
         this.name = name;
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.phone3 = phone3;
         this.email = email;
+        this.memberType = memberType;
     }
 }
