@@ -1,0 +1,16 @@
+### 등록
+POST {{api}}/member
+Content-Type: application/json
+
+{
+  "name": "KNJ",
+  "phoneNumber": "01048004084",
+  "email": "namjunemy@gmail.com",
+  "memberType": "admin2"
+}
+
+
+### 조회
+GET {{api}}/members
+Content-Type: application/json
+
