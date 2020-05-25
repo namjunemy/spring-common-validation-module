@@ -19,7 +19,6 @@ public enum MemberType {
             .stream(values())
             .collect(Collectors.toMap(MemberType::getTitle, v -> v)));
 
-
     MemberType(String title) {
         this.title = title;
     }

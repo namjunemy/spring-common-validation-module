@@ -2,16 +2,17 @@ package io.namjune.commonvalidation.dto;
 
 import io.namjune.commonvalidation.domain.Member;
 import io.namjune.commonvalidation.valid.MemberType;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Getter
+@NoArgsConstructor
 public class MemberRequestDto {
-
-    private Long id;
 
     @NotBlank(message = "이름을 작성해주세요.")
     private String name;
@@ -27,7 +28,12 @@ public class MemberRequestDto {
     @MemberType
     private String memberType;
 
-    public MemberRequestDto() {
+    @Builder
+    public MemberRequestDto(String name, String phoneNumber, String email, String memberType) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.memberType = memberType;
     }
 
     public Member toEntity() {
