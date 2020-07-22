@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "KNJ",
-  "phoneNumber": "01048004084",
+  "phoneNumber": "01012341234",
   "email": "namjunemy@gmail.com",
   "memberType": "admin"
 }
